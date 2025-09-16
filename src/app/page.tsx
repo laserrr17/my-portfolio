@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import ModeToggle from "@/components/mode-toggle"
+import Image from "next/image"
+import TextTypeWrapper from "@/components/TextTypeWrapper"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
 
 export default function Portfolio() {
@@ -15,22 +17,24 @@ export default function Portfolio() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="font-bold text-xl">Yuhao Cheng</div>
           <div className="flex items-center gap-4">
-            <a href="#about" className="text-sm font-medium hover:underline underline-offset-4">
+            <a href="#about" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
               About
             </a>
-            <a href="#education" className="text-sm font-medium hover:underline underline-offset-4">
+            <a href="#education" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
               Education
             </a>
-            <a href="#projects" className="text-sm font-medium hover:underline underline-offset-4">
+            <a href="#projects" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
               Projects
             </a>
-            <a href="#experience" className="text-sm font-medium hover:underline underline-offset-4">
+            <a href="#experience" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
               Experience
             </a>
-            <a href="#skills" className="text-sm font-medium hover:underline underline-offset-4">
+            <a href="#skills" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
               Skills
             </a>
-            <ModeToggle />
+            <div className="cursor-target">
+              <ModeToggle />
+            </div>
           </div>
         </div>
       </nav>
@@ -39,26 +43,51 @@ export default function Portfolio() {
         {/* Hero Section */}
         <section id="about" className="py-16 text-center min-h-[600px]">
           <div className="mx-auto max-w-4xl">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+            {/* Profile Picture */}
+            <div className="mb-8 flex justify-center">
+              <div className="relative">
+                <Image 
+                  src="/profile_picture.png" 
+                  alt="Yuhao Cheng" 
+                  width={160} 
+                  height={160}
+                  className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover cursor-target border-4 border-white/80 shadow-lg hover:border-white transition-colors duration-300"
+                  priority
+                />
+              </div>
+            </div>
+            
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6 text-white dark:text-white">
               Yuhao Cheng
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Master's Student in Computer Science at University of Illinois Urbana-Champaign
-            </p>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <div className="text-xl mb-8 text-white dark:text-white min-h-[2rem]">
+              <TextTypeWrapper 
+                text={[
+                  "Master's Student in Computer Science at UIUC",
+                  "Full Stack Developer & ML Engineer", 
+                  "Passionate about innovative tech solutions"
+                ]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+                className="text-xl text-white dark:text-white"
+              />
+            </div>
+            <p className="text-lg mb-8 max-w-2xl mx-auto text-white dark:text-white">
               Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
               Passionate about building innovative solutions that bridge technology and real-world applications.
             </p>
             
             {/* Contact Information */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-muted-foreground">
+            <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-white/90 dark:text-white/90">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
                 <span>603 E Clark St, IL 61820</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:yuhaoc7@outlook.com" className="hover:underline">
+                <a href="mailto:yuhaoc7@outlook.com" className="hover:underline cursor-target">
                   yuhaoc7@outlook.com
                 </a>
               </div>
@@ -74,15 +103,15 @@ export default function Portfolio() {
 
             {/* Social Links */}
             <div className="flex justify-center gap-4">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="cursor-target">
                 <Github className="h-4 w-4 mr-2" />
                 GitHub
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="cursor-target">
                 <Linkedin className="h-4 w-4 mr-2" />
                 LinkedIn
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="cursor-target">
                 <Mail className="h-4 w-4 mr-2" />
                 Contact
               </Button>

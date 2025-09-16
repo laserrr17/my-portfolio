@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import PixelBlastWrapper from "@/components/PixelBlastWrapper";
+import PrismWrapper from "@/components/PrismWrapper";
+import TargetCursorWrapper from "@/components/TargetCursorWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,25 +36,25 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Full-screen PixelBlast Background */}
+          {/* Custom Target Cursor */}
+          <TargetCursorWrapper 
+            spinDuration={2}
+            hideDefaultCursor={true}
+            targetSelector=".cursor-target"
+          />
+          
+          {/* Full-screen Prism Background */}
           <div className="fixed inset-0 w-full h-full z-0">
-            <PixelBlastWrapper
-              variant="square"
-              pixelSize={6}
-              color="#8B5CF6"
-              patternScale={2}
-              patternDensity={1.8}
-              pixelSizeJitter={0.3}
-              enableRipples={true}
-              rippleSpeed={0.5}
-              rippleThickness={0.15}
-              rippleIntensityScale={2.0}
-              liquid={false}
-              liquidStrength={0.1}
-              liquidRadius={1.0}
-              liquidWobbleSpeed={4}
-              speed={0.8}
-              edgeFade={0.05}
+            <PrismWrapper
+              animationType="rotate"
+              timeScale={0.5}
+              height={3.5}
+              baseWidth={5.5}
+              scale={3.6}
+              hueShift={0}
+              colorFrequency={1}
+              noise={0.5}
+              glow={1}
               transparent={true}
               className="w-full h-full"
               style={{ width: '100%', height: '100%' }}
