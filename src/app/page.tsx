@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import ModeToggle from "@/components/mode-toggle"
-import PixelBlastWrapper from "@/components/PixelBlastWrapper"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -38,32 +37,8 @@ export default function Portfolio() {
 
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
-        <section id="about" className="relative py-16 text-center overflow-hidden min-h-[600px]">
-          {/* PixelBlast Background */}
-          <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-purple-900/10 to-blue-900/10">
-            <PixelBlastWrapper
-              variant="square"
-              pixelSize={6}
-              color="#8B5CF6"
-              patternScale={2}
-              patternDensity={1.8}
-              pixelSizeJitter={0.3}
-              enableRipples={true}
-              rippleSpeed={0.5}
-              rippleThickness={0.15}
-              rippleIntensityScale={2.0}
-              liquid={false}
-              liquidStrength={0.1}
-              liquidRadius={1.0}
-              liquidWobbleSpeed={4}
-              speed={0.8}
-              edgeFade={0.05}
-              transparent={true}
-              className="w-full h-full"
-              style={{ width: '100%', height: '100%', minHeight: '600px' }}
-            />
-          </div>
-          <div className="relative z-10 mx-auto max-w-4xl">
+        <section id="about" className="py-16 text-center min-h-[600px]">
+          <div className="mx-auto max-w-4xl">
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
               Yuhao Cheng
             </h1>
