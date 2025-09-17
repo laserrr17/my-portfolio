@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import PrismWrapper from "@/components/PrismWrapper";
+import StructuredData from "@/components/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,77 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yuhao Cheng - Portfolio",
-  description: "Master's student in Computer Science at UIUC, specializing in Full Stack Development, Machine Learning, and NLP",
+  title: {
+    default: "Yuhao Cheng - Full Stack Developer & ML Engineer",
+    template: "%s | Yuhao Cheng Portfolio"
+  },
+  description: "Master's student in Computer Science at UIUC, specializing in Full Stack Development, Machine Learning, and NLP. Experienced in React, Python, PyTorch, and modern web technologies.",
+  keywords: [
+    "Yuhao Cheng",
+    "Full Stack Developer",
+    "Machine Learning Engineer",
+    "React Developer",
+    "Python Developer",
+    "UIUC Computer Science",
+    "Web Development",
+    "AI/ML",
+    "PyTorch",
+    "Node.js",
+    "Portfolio",
+    "Software Engineer"
+  ],
+  authors: [{ name: "Yuhao Cheng" }],
+  creator: "Yuhao Cheng",
+  publisher: "Yuhao Cheng",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://your-domain.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://your-domain.com",
+    title: "Yuhao Cheng - Full Stack Developer & ML Engineer",
+    description: "Master's student in Computer Science at UIUC, specializing in Full Stack Development, Machine Learning, and NLP. View my projects and experience.",
+    siteName: "Yuhao Cheng Portfolio",
+    images: [
+      {
+        url: "/profile_picture.png",
+        width: 1200,
+        height: 630,
+        alt: "Yuhao Cheng - Full Stack Developer & ML Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yuhao Cheng - Full Stack Developer & ML Engineer",
+    description: "Master's student in Computer Science at UIUC, specializing in Full Stack Development, Machine Learning, and NLP.",
+    images: ["/profile_picture.png"],
+    creator: "@YuhaoCheng", // Update with actual Twitter handle if available
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add verification codes when you have them
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
+    // yahoo: "your-yahoo-verification-code",
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +96,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
