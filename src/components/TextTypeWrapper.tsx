@@ -24,7 +24,7 @@ interface TextTypeWrapperProps {
   cursorClassName?: string
   cursorBlinkDuration?: number
   textColors?: string[]
-  variableSpeed?: any
+  variableSpeed?: {min: number, max: number} | boolean
   onSentenceComplete?: () => void
   startOnVisible?: boolean
   reverseMode?: boolean

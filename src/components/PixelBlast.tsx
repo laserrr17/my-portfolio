@@ -16,8 +16,8 @@ const createTouchTexture = () => {
   texture.minFilter = THREE.LinearFilter;
   texture.magFilter = THREE.LinearFilter;
   texture.generateMipmaps = false;
-  const trail = [];
-  let last = null;
+  const trail: Array<{x: number, y: number, age: number, force: number, vx: number, vy: number}> = [];
+  let last: {x: number, y: number} | null = null;
   const maxAge = 64;
   let radius = 0.1 * size;
   const speed = 1 / maxAge;
