@@ -11,6 +11,15 @@ import TextTypeWrapper from "@/components/TextTypeWrapper"
 import GooeyNav from "@/components/GooeyNav"
 import SplashCursor from "@/components/SplashCursor"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
+import { 
+  SiJavascript, SiPython, SiCplusplus, SiSharp, SiMysql,
+  SiPytorch, SiReact, SiVuedotjs, SiNodedotjs, SiExpress, SiDocker,
+  SiFastapi, SiApacheecharts, SiChartdotjs, SiVite,
+  SiUnity, SiGit, SiNvidia, SiLatex
+} from "react-icons/si"
+import { DiDatabase } from "react-icons/di"
+import { MdTranslate } from "react-icons/md"
+import { FaBrain, FaRobot, FaCode, FaServer } from "react-icons/fa"
 
 export default function Portfolio() {
   // Navigation items for GooeyNav
@@ -21,6 +30,40 @@ export default function Portfolio() {
     { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
   ];
+
+  // Skills showcase data
+  const skillsData = {
+    languages: [
+      { name: 'JavaScript', icon: <SiJavascript size={32} color="#F7DF1E" />, level: 'Advanced' },
+      { name: 'Python', icon: <SiPython size={32} color="#3776AB" />, level: 'Advanced' },
+      { name: 'C/C++', icon: <SiCplusplus size={32} color="#00599C" />, level: 'Intermediate' },
+      { name: 'C#', icon: <SiSharp size={32} color="#239120" />, level: 'Intermediate' },
+      { name: 'SQL', icon: <DiDatabase size={32} color="#336791" />, level: 'Advanced' },
+      { name: 'LaTeX', icon: <SiLatex size={32} color="#008080" />, level: 'Intermediate' },
+    ],
+    technologies: [
+      { name: 'PyTorch', icon: <SiPytorch size={32} color="#EE4C2C" />, level: 'Advanced' },
+      { name: 'React', icon: <SiReact size={32} color="#61DAFB" />, level: 'Advanced' },
+      { name: 'Vue 3', icon: <SiVuedotjs size={32} color="#4FC08D" />, level: 'Advanced' },
+      { name: 'Node.js', icon: <SiNodedotjs size={32} color="#339933" />, level: 'Advanced' },
+      { name: 'Express', icon: <SiExpress size={32} color="#000000" />, level: 'Advanced' },
+      { name: 'MySQL', icon: <SiMysql size={32} color="#4479A1" />, level: 'Advanced' },
+      { name: 'Docker', icon: <SiDocker size={32} color="#2496ED" />, level: 'Intermediate' },
+      { name: 'FastAPI', icon: <SiFastapi size={32} color="#009688" />, level: 'Advanced' },
+    ],
+    domains: [
+      { name: 'Full Stack Development', icon: <FaCode size={32} color="#FF6B6B" />, level: 'Expert' },
+      { name: 'Machine Learning', icon: <FaBrain size={32} color="#4ECDC4" />, level: 'Advanced' },
+      { name: 'NLP', icon: <MdTranslate size={32} color="#45B7D1" />, level: 'Advanced' },
+      { name: 'Reinforcement Learning', icon: <FaRobot size={32} color="#96CEB4" />, level: 'Intermediate' },
+    ],
+    tools: [
+      { name: 'VS Code', icon: <Code size={32} color="#007ACC" />, level: 'Expert' },
+      { name: 'Unity3D', icon: <SiUnity size={32} color="#000000" />, level: 'Intermediate' },
+      { name: 'Git', icon: <SiGit size={32} color="#F05032" />, level: 'Advanced' },
+      { name: 'CUDA', icon: <SiNvidia size={32} color="#76B900" />, level: 'Intermediate' },
+    ]
+  };
 
   return (
     <div className="min-h-screen">
@@ -344,78 +387,138 @@ export default function Portfolio() {
 
         {/* Skills Section */}
         <section id="skills" className="py-16">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold mb-8">Skills</h2>
+          <div className="mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold mb-8 text-center">Skills & Expertise</h2>
+            <p className="text-center text-muted-foreground mb-12">
+              My technical proficiency across various domains and technologies
+            </p>
             
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+            {/* Bento Grid Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              {/* Languages - Large Card */}
+              <SpotlightCard className="md:col-span-2 lg:col-span-2 custom-spotlight-card" spotlightColor="rgba(247, 223, 30, 0.2)">
                 <CardHeader>
-                  <CardTitle className="text-lg">Languages</CardTitle>
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <Code className="h-6 w-6" />
+                    Programming Languages
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">JavaScript</Badge>
-                    <Badge variant="outline">Python</Badge>
-                    <Badge variant="outline">C/C++</Badge>
-                    <Badge variant="outline">C#</Badge>
-                    <Badge variant="outline">SQL</Badge>
-                    <Badge variant="outline">SystemVerilog</Badge>
-                    <Badge variant="outline">Verilog</Badge>
-                    <Badge variant="outline">Assembly</Badge>
-                    <Badge variant="outline">LaTeX</Badge>
+                  <div className="grid grid-cols-2 gap-4">
+                    {skillsData.languages.map((skill, index) => (
+                      <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex-shrink-0">{skill.icon}</div>
+                        <div className="flex-1">
+                          <div className="font-medium text-sm">{skill.name}</div>
+                          <div className="text-xs text-muted-foreground">{skill.level}</div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </SpotlightCard>
 
-              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+              {/* Technologies - Large Card */}
+              <SpotlightCard className="md:col-span-2 lg:col-span-2 custom-spotlight-card" spotlightColor="rgba(238, 77, 44, 0.2)">
                 <CardHeader>
-                  <CardTitle className="text-lg">Technologies</CardTitle>
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <Briefcase className="h-6 w-6" />
+                    Technologies & Frameworks
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">PyTorch</Badge>
-                    <Badge variant="outline">React</Badge>
-                    <Badge variant="outline">Vue 3</Badge>
-                    <Badge variant="outline">Node.js</Badge>
-                    <Badge variant="outline">Express</Badge>
-                    <Badge variant="outline">MySQL</Badge>
-                    <Badge variant="outline">Docker</Badge>
-                    <Badge variant="outline">FastAPI</Badge>
-                    <Badge variant="outline">ECharts</Badge>
-                    <Badge variant="outline">Chart.js</Badge>
-                    <Badge variant="outline">Vite</Badge>
+                  <div className="grid grid-cols-2 gap-4">
+                    {skillsData.technologies.map((skill, index) => (
+                      <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex-shrink-0">{skill.icon}</div>
+                        <div className="flex-1">
+                          <div className="font-medium text-sm">{skill.name}</div>
+                          <div className="text-xs text-muted-foreground">{skill.level}</div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </SpotlightCard>
 
-              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+              {/* Domains - Tall Card */}
+              <SpotlightCard className="lg:row-span-2 custom-spotlight-card" spotlightColor="rgba(255, 107, 107, 0.2)">
                 <CardHeader>
-                  <CardTitle className="text-lg">Domains</CardTitle>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <FaBrain className="h-5 w-5" />
+                    Domains
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">Full Stack Development</Badge>
-                    <Badge variant="outline">Machine Learning</Badge>
-                    <Badge variant="outline">NLP</Badge>
-                    <Badge variant="outline">Reinforcement Learning</Badge>
+                  <div className="space-y-4">
+                    {skillsData.domains.map((skill, index) => (
+                      <div key={index} className="text-center p-4 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex justify-center mb-2">{skill.icon}</div>
+                        <div className="font-medium text-sm mb-1">{skill.name}</div>
+                        <div className="text-xs text-muted-foreground">{skill.level}</div>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </SpotlightCard>
 
-              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+              {/* Tools - Tall Card */}
+              <SpotlightCard className="lg:row-span-2 custom-spotlight-card" spotlightColor="rgba(118, 185, 0, 0.2)">
                 <CardHeader>
-                  <CardTitle className="text-lg">Tools</CardTitle>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <FaServer className="h-5 w-5" />
+                    Tools
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">VS Code</Badge>
-                    <Badge variant="outline">Unity3D</Badge>
-                    <Badge variant="outline">Xilinx Vivado</Badge>
-                    <Badge variant="outline">Git</Badge>
-                    <Badge variant="outline">CUDA</Badge>
+                  <div className="space-y-4">
+                    {skillsData.tools.map((skill, index) => (
+                      <div key={index} className="text-center p-4 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex justify-center mb-2">{skill.icon}</div>
+                        <div className="font-medium text-sm mb-1">{skill.name}</div>
+                        <div className="text-xs text-muted-foreground">{skill.level}</div>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </SpotlightCard>
+
+              {/* Additional Skills - Wide Card */}
+              <SpotlightCard className="md:col-span-2 custom-spotlight-card" spotlightColor="rgba(69, 183, 209, 0.2)">
+                <CardHeader>
+                  <CardTitle className="text-lg">Additional Skills</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <Code size={16} />
+                      SystemVerilog
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <Code size={16} />
+                      Verilog
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <Code size={16} />
+                      Assembly
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <SiApacheecharts size={16} />
+                      ECharts
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <SiChartdotjs size={16} />
+                      Chart.js
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <SiVite size={16} />
+                      Vite
+                    </Badge>
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
             </div>
           </div>
         </section>
