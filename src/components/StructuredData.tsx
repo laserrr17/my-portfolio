@@ -7,8 +7,8 @@ export default function StructuredData() {
     name: "Yuhao Cheng",
     jobTitle: ["Full Stack Developer", "Machine Learning Engineer", "Graduate Student"],
     description: "Master's student in Computer Science at UIUC, specializing in Full Stack Development, Machine Learning, and NLP",
-    url: "https://your-domain.com",
-    image: "https://your-domain.com/profile_picture.png",
+    url: "https://yuhaoc7.com",
+    image: "https://yuhaoc7.com/profile_picture.png",
     email: "mailto:your-email@example.com", // Update with your actual email
     telephone: "+1-XXX-XXX-XXXX", // Update with your actual phone if you want to include it
     address: {
@@ -60,7 +60,7 @@ export default function StructuredData() {
     mainEntity: {
       "@type": "WebSite",
       name: "Yuhao Cheng Portfolio",
-      url: "https://your-domain.com",
+      url: "https://yuhaoc7.com",
       description: "Personal portfolio showcasing full stack development and machine learning projects",
       author: {
         "@type": "Person",
@@ -73,7 +73,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Yuhao Cheng Portfolio",
-    url: "https://your-domain.com",
+    url: "https://yuhaoc7.com",
     description: "Personal portfolio showcasing full stack development and machine learning projects",
     author: {
       "@type": "Person",
@@ -84,7 +84,7 @@ export default function StructuredData() {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://your-domain.com/#search?q={search_term_string}"
+        urlTemplate: "https://yuhaoc7.com/#search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }

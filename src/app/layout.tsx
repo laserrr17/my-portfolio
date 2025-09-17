@@ -43,14 +43,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://yuhaoc7.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-domain.com",
+    url: "https://yuhaoc7.com",
     title: "Yuhao Cheng - Full Stack Developer & ML Engineer",
     description: "Master's student in Computer Science at UIUC, specializing in Full Stack Development, Machine Learning, and NLP. View my projects and experience.",
     siteName: "Yuhao Cheng Portfolio",

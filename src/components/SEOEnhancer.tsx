@@ -45,7 +45,7 @@ export default function SEOEnhancer() {
       />
       
       {/* Canonical URL */}
-      <link rel="canonical" href="https://your-domain.com/" />
+      <link rel="canonical" href="https://yuhaoc7.com/" />
       
       {/* Additional structured data for breadcrumbs */}
       <script
@@ -59,31 +59,31 @@ export default function SEOEnhancer() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://your-domain.com/"
+                "item": "https://yuhaoc7.com/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "About",
-                "item": "https://your-domain.com/#about"
+                "item": "https://yuhaoc7.com/#about"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Projects",
-                "item": "https://your-domain.com/#projects"
+                "item": "https://yuhaoc7.com/#projects"
               },
               {
                 "@type": "ListItem",
                 "position": 4,
                 "name": "Experience",
-                "item": "https://your-domain.com/#experience"
+                "item": "https://yuhaoc7.com/#experience"
               },
               {
                 "@type": "ListItem",
                 "position": 5,
                 "name": "Skills",
-                "item": "https://your-domain.com/#skills"
+                "item": "https://yuhaoc7.com/#skills"
               }
             ]
           })

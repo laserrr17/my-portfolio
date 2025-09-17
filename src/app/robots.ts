@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/', '/logs/'],
     },
-    sitemap: 'https://your-domain.com/sitemap.xml', // Replace with your actual domain
+    sitemap: 'https://yuhaoc7.com/sitemap.xml',
   }
 }
