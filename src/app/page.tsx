@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,7 +10,6 @@ import ModeToggle from "@/components/mode-toggle"
 import SpotlightCard from "@/components/SpotlightCard"
 import Image from "next/image"
 import TextTypeWrapper from "@/components/TextTypeWrapper"
-import GooeyNav from "@/components/GooeyNav"
 import SplashCursor from "@/components/SplashCursor"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
 import { 
@@ -20,16 +21,21 @@ import {
 import { DiDatabase } from "react-icons/di"
 import { MdTranslate } from "react-icons/md"
 import { FaBrain, FaRobot, FaCode, FaServer } from "react-icons/fa"
+import PillNav from "@/components/PillNav"
 
 export default function Portfolio() {
-  // Navigation items for GooeyNav
+  // Navigation items for PillNav
   const navItems = [
+    { label: "Home", href: "#" },
     { label: "About", href: "#about" },
     { label: "Education", href: "#education" },
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
   ];
+
+  // Simple active section tracking (you can enhance this with intersection observer)
+  const [activeSection, setActiveSection] = useState("#");
 
   // Skills showcase data
   const skillsData = {
@@ -69,28 +75,23 @@ export default function Portfolio() {
     <div className="min-h-screen">
       <SplashCursor />
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full">
-        <div className="container mx-auto flex h-20 items-center justify-between px-4">
-          <div className="font-bold text-xl text-white">Yuhao Cheng</div>
-          <div className="flex items-center gap-8">
-            <div style={{ height: '60px', position: 'relative' }}>
-              <GooeyNav
-                items={navItems}
-                particleCount={15}
-                particleDistances={[90, 10]}
-                particleR={100}
-                initialActiveIndex={0}
-                animationTime={600}
-                timeVariance={300}
-                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-              />
-            </div>
-            <div>
-              <ModeToggle />
-            </div>
-          </div>
+      <div className="sticky top-0 z-50 w-full flex justify-center">
+        <PillNav
+          logo="/profile_picture.png"
+          logoAlt="Yuhao Cheng"
+          items={navItems}
+          activeHref={activeSection}
+          className="custom-nav"
+          ease="power2.easeOut"
+          baseColor="#000000"
+          pillColor="#ffffff"
+          hoveredPillTextColor="#ffffff"
+          pillTextColor="#000000"
+        />
+        <div className="absolute right-4 top-4">
+          <ModeToggle />
         </div>
-      </nav>
+      </div>
 
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -523,10 +524,6 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="py-8 text-center text-muted-foreground">
-          <p>&copy; 2025 Yuhao Cheng. Built with Next.js and shadcn/ui.</p>
-        </footer>
       </main>
     </div>
   )
