@@ -1,0 +1,67 @@
+# Docker ignore file
+# Reduce Docker image size
+
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+.next
+out
+
+# Environment variables
+.env*.local
+.env.production
+
+# Logs
+*.log
+logs/
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage reports
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+backups/
+
+# Docker related
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# Deployment scripts
+deploy.sh
+auto-deploy.sh
+build-and-run.sh
+
+# Configuration files
+nginx.conf
+ecosystem.config.js
+*.service
+
+# Documentation
+README*.md
+PROFILE_PICTURE_SETUP.md

@@ -1,0 +1,37 @@
+# Systemd service configuration file for Next.js portfolio
+# Installation: sudo cp my-portfolio.service /etc/systemd/system/
+# Enable service: sudo systemctl enable my-portfolio
+# Start service: sudo systemctl start my-portfolio
+
+[Unit]
+Description=My Portfolio Next.js Application
+After=network.target
+
+[Service]
+Type=simple
+User=laser17
+Group=laser17
+WorkingDirectory=/home/laser17/my-portfolio
+Environment=NODE_ENV=production
+Environment=PORT=10001
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=10
+KillMode=mixed
+KillSignal=SIGINT
+TimeoutStopSec=5
+SyslogIdentifier=my-portfolio
+
+# Security configuration
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/laser17/my-portfolio
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target
