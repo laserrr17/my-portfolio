@@ -5,34 +5,44 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import ModeToggle from "@/components/mode-toggle"
+import SpotlightCard from "@/components/SpotlightCard"
 import Image from "next/image"
 import TextTypeWrapper from "@/components/TextTypeWrapper"
+import GooeyNav from "@/components/GooeyNav"
+import SplashCursor from "@/components/SplashCursor"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
 
 export default function Portfolio() {
+  // Navigation items for GooeyNav
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Education", href: "#education" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Skills", href: "#skills" },
+  ];
+
   return (
     <div className="min-h-screen">
+      <SplashCursor />
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="font-bold text-xl">Yuhao Cheng</div>
-          <div className="flex items-center gap-4">
-            <a href="#about" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
-              About
-            </a>
-            <a href="#education" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
-              Education
-            </a>
-            <a href="#projects" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
-              Projects
-            </a>
-            <a href="#experience" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
-              Experience
-            </a>
-            <a href="#skills" className="text-sm font-medium hover:underline underline-offset-4 cursor-target">
-              Skills
-            </a>
-            <div className="cursor-target">
+      <nav className="sticky top-0 z-50 w-full">
+        <div className="container mx-auto flex h-20 items-center justify-between px-4">
+          <div className="font-bold text-xl text-white">Yuhao Cheng</div>
+          <div className="flex items-center gap-8">
+            <div style={{ height: '60px', position: 'relative' }}>
+              <GooeyNav
+                items={navItems}
+                particleCount={15}
+                particleDistances={[90, 10]}
+                particleR={100}
+                initialActiveIndex={0}
+                animationTime={600}
+                timeVariance={300}
+                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+              />
+            </div>
+            <div>
               <ModeToggle />
             </div>
           </div>
@@ -51,7 +61,7 @@ export default function Portfolio() {
                   alt="Yuhao Cheng" 
                   width={160} 
                   height={160}
-                  className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover cursor-target border-4 border-white/80 shadow-lg hover:border-white transition-colors duration-300"
+                  className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white/80 shadow-lg hover:border-white transition-colors duration-300"
                   priority
                 />
               </div>
@@ -87,7 +97,7 @@ export default function Portfolio() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:yuhaoc7@outlook.com" className="hover:underline cursor-target">
+                <a href="mailto:yuhaoc7@outlook.com" className="hover:underline">
                   yuhaoc7@outlook.com
                 </a>
               </div>
@@ -103,15 +113,15 @@ export default function Portfolio() {
 
             {/* Social Links */}
             <div className="flex justify-center gap-4">
-              <Button variant="outline" size="sm" className="cursor-target">
+              <Button variant="outline" size="sm">
                 <Github className="h-4 w-4 mr-2" />
                 GitHub
               </Button>
-              <Button variant="outline" size="sm" className="cursor-target">
+              <Button variant="outline" size="sm">
                 <Linkedin className="h-4 w-4 mr-2" />
                 LinkedIn
               </Button>
-              <Button variant="outline" size="sm" className="cursor-target">
+              <Button variant="outline" size="sm">
                 <Mail className="h-4 w-4 mr-2" />
                 Contact
               </Button>
@@ -130,7 +140,7 @@ export default function Portfolio() {
             </h2>
             
             <div className="space-y-6">
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
@@ -150,9 +160,9 @@ export default function Portfolio() {
                     <strong>Coursework:</strong> Software Engineering, Communication Networks, Text Information Systems
                   </p>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
 
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
@@ -172,7 +182,7 @@ export default function Portfolio() {
                     <strong>Coursework:</strong> Data Structures, Operating Systems, AI, Databases, Algorithms
                   </p>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
             </div>
           </div>
         </section>
@@ -188,7 +198,7 @@ export default function Portfolio() {
             </h2>
             
             <div className="space-y-6">
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
@@ -221,9 +231,9 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
 
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
@@ -254,7 +264,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
             </div>
           </div>
         </section>
@@ -270,7 +280,7 @@ export default function Portfolio() {
             </h2>
             
             <div className="space-y-6">
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
@@ -297,9 +307,9 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
 
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
@@ -325,7 +335,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
             </div>
           </div>
         </section>
@@ -338,7 +348,7 @@ export default function Portfolio() {
             <h2 className="text-3xl font-bold mb-8">Skills</h2>
             
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <CardTitle className="text-lg">Languages</CardTitle>
                 </CardHeader>
@@ -355,9 +365,9 @@ export default function Portfolio() {
                     <Badge variant="outline">LaTeX</Badge>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
 
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <CardTitle className="text-lg">Technologies</CardTitle>
                 </CardHeader>
@@ -376,9 +386,9 @@ export default function Portfolio() {
                     <Badge variant="outline">Vite</Badge>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
 
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <CardTitle className="text-lg">Domains</CardTitle>
                 </CardHeader>
@@ -390,9 +400,9 @@ export default function Portfolio() {
                     <Badge variant="outline">Reinforcement Learning</Badge>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
 
-              <Card>
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
                   <CardTitle className="text-lg">Tools</CardTitle>
                 </CardHeader>
@@ -405,7 +415,7 @@ export default function Portfolio() {
                     <Badge variant="outline">CUDA</Badge>
                   </div>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
             </div>
           </div>
         </section>

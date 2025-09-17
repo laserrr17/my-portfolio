@@ -47,6 +47,12 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
+  
+  /* GooeyNav particle colors */
+  --color-1: #ff6b6b;
+  --color-2: #4ecdc4;
+  --color-3: #45b7d1;
+  --color-4: #96ceb4;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
@@ -81,6 +87,12 @@
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
+  
+  /* GooeyNav particle colors for dark mode */
+  --color-1: #ff8a8a;
+  --color-2: #6ee7de;
+  --color-3: #5bc5e8;
+  --color-4: #a8d5c4;
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);

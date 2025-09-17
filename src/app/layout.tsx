@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import PrismWrapper from "@/components/PrismWrapper";
-import TargetCursorWrapper from "@/components/TargetCursorWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,13 +35,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Custom Target Cursor */}
-          <TargetCursorWrapper 
-            spinDuration={2}
-            hideDefaultCursor={true}
-            targetSelector=".cursor-target"
-          />
-          
           {/* Full-screen Prism Background */}
           <div className="fixed inset-0 w-full h-full z-0">
             <PrismWrapper
