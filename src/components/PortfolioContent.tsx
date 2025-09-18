@@ -42,10 +42,10 @@ export default function PortfolioContent() {
   // Get theme-aware colors for PillNav using CSS variables
   const getNavColors = () => {
     return {
-      baseColor: "hsl(var(--foreground))",
-      pillColor: "hsl(var(--primary))", 
-      hoveredPillTextColor: "hsl(var(--primary-foreground))",
-      pillTextColor: "hsl(var(--foreground))"
+      baseColor: "var(--foreground)",
+      pillColor: "var(--primary)", 
+      hoveredPillTextColor: "var(--primary-foreground)",
+      pillTextColor: "var(--foreground)"
     }
   }
 

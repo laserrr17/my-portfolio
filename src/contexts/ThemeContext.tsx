@@ -30,7 +30,7 @@ interface CustomThemeProviderProps {
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
   const { theme: systemTheme, setTheme: setSystemTheme, resolvedTheme } = useTheme()
-  const [colorTheme, setColorTheme] = useState<ColorTheme>('dark')
+  const [colorTheme, setColorTheme] = useState<ColorTheme>('green')
   const [mounted, setMounted] = useState(false)
 
   // Handle hydration
@@ -59,7 +59,12 @@ export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
       // Add the appropriate classes
       if (colorTheme === 'green') {
         document.documentElement.classList.add('green')
+      } else if (colorTheme === 'light') {
+        document.documentElement.classList.add('light')
+      } else if (colorTheme === 'dark') {
+        document.documentElement.classList.add('dark')
       } else {
+        // Fallback to system theme
         document.documentElement.classList.add(resolvedTheme)
       }
     }
