@@ -50,8 +50,8 @@ function cssColorToRgb(cssColor) {
 const DotGrid = ({
   dotSize = 16,
   gap = 32,
-  baseColor = 'var(--secondary)',
-  activeColor = 'var(--color-1)',
+  baseColor = 'var(--color-3)',
+  activeColor = 'var(--color-4)',
   proximity = 150,
   speedTrigger = 100,
   shockRadius = 250,

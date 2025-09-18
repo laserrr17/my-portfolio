@@ -113,12 +113,12 @@ export default function RootLayout({
             {/* Full-screen DotGrid Background */}
             <div className="fixed inset-0 w-full h-full z-0">
               <DotGrid
-                dotSize={10}
-                gap={15}
-                baseColor='var(--secondary)'
-                activeColor='var(--color-1)'
+                dotSize={8}
+                gap={12}
+                baseColor='var(--color-3)'
+                activeColor='var(--color-4)'
                 proximity={120}
-                shockRadius={250}
+                shockRadius={150}
                 shockStrength={5}
                 resistance={750}
                 returnDuration={1.5}

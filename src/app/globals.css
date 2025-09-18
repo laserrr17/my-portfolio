@@ -53,7 +53,7 @@
   --color-2: #4ecdc4;
   --color-3: #45b7d1;
   --color-4: #96ceb4;
-  --card: oklch(1 0 0);
+  --card: oklch(0.98 0.001 286.375);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);

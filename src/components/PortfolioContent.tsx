@@ -206,7 +206,7 @@ export default function PortfolioContent() {
                         University of Illinois Urbana-Champaign
                       </CardDescription>
                     </div>
-                    <Badge variant="secondary" className="flex items-center gap-1">
+                    <Badge variant="color1" className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       Aug 2025 – Present
                     </Badge>
@@ -228,7 +228,7 @@ export default function PortfolioContent() {
                         University of Illinois Urbana-Champaign
                       </CardDescription>
                     </div>
-                    <Badge variant="secondary" className="flex items-center gap-1">
+                    <Badge variant="color1" className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       2021 – 2025
                     </Badge>
@@ -267,7 +267,7 @@ export default function PortfolioContent() {
                       </CardTitle>
                       <CardDescription>Full-stack financial tracking application with AI-powered forecasting</CardDescription>
                     </div>
-                    <Badge variant="outline">Feb 2025 – Apr 2025</Badge>
+                    <Badge variant="color1">Feb 2025 – Apr 2025</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -302,7 +302,7 @@ export default function PortfolioContent() {
                       </CardTitle>
                       <CardDescription>Advanced RL-based web agent with memory mechanisms</CardDescription>
                     </div>
-                    <Badge variant="outline">Sep 2024 – May 2025</Badge>
+                    <Badge variant="color1">Sep 2024 – May 2025</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -344,7 +344,7 @@ export default function PortfolioContent() {
                       <CardTitle>Frontend Developer Intern</CardTitle>
                       <CardDescription className="text-base font-medium">visibilityx.ai</CardDescription>
                     </div>
-                    <Badge variant="default">Jun 2025 – Aug 2025</Badge>
+                    <Badge variant="color1">Jun 2025 – Aug 2025</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -373,7 +373,7 @@ export default function PortfolioContent() {
                       <CardTitle>Deep Learning Intern</CardTitle>
                       <CardDescription className="text-base font-medium">HiABR Lab</CardDescription>
                     </div>
-                    <Badge variant="default">May 2024 – Aug 2024</Badge>
+                    <Badge variant="color1">May 2024 – Aug 2024</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
