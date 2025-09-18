@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomThemeProvider } from "@/contexts/ThemeContext";
-import PrismWrapper from "@/components/PrismWrapper";
+import DotGrid from "@/components/DotGrid";
 import StructuredData from "@/components/StructuredData";
 
 const geistSans = Geist({
@@ -110,20 +110,18 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CustomThemeProvider>
-            {/* Full-screen Prism Background */}
+            {/* Full-screen DotGrid Background */}
             <div className="fixed inset-0 w-full h-full z-0">
-              <PrismWrapper
-                animationType="rotate"
-                timeScale={0.5}
-                height={3.5}
-                baseWidth={5.5}
-                scale={3.6}
-                hueShift={0}
-                colorFrequency={1}
-                noise={0.5}
-                glow={1}
-                transparent={true}
-                className="w-full h-full"
+              <DotGrid
+                dotSize={10}
+                gap={15}
+                baseColor='var(--secondary)'
+                activeColor='var(--color-1)'
+                proximity={120}
+                shockRadius={250}
+                shockStrength={5}
+                resistance={750}
+                returnDuration={1.5}
                 style={{ width: '100%', height: '100%' }}
               />
             </div>

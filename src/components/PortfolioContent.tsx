@@ -11,7 +11,6 @@ import ModeToggle from "@/components/mode-toggle"
 import SpotlightCard from "@/components/SpotlightCard"
 import Image from "next/image"
 import TextTypeWrapper from "@/components/TextTypeWrapper"
-import SplashCursor from "@/components/SplashCursor"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
 import { 
   SiJavascript, SiPython, SiCplusplus, SiSharp, SiMysql,
@@ -40,71 +39,54 @@ export default function PortfolioContent() {
   // Simple active section tracking (you can enhance this with intersection observer)
   const [activeSection, setActiveSection] = useState("#");
 
-  // Get theme-aware colors for PillNav
+  // Get theme-aware colors for PillNav using CSS variables
   const getNavColors = () => {
-    if (colorTheme === 'green') {
-      return {
-        baseColor: "#ffffff",
-        pillColor: "#f9bc60", 
-        hoveredPillTextColor: "#001e1d",
-        pillTextColor: "#ffffff"
-      }
-    } else if (colorTheme === 'light') {
-      return {
-        baseColor: "#000000",
-        pillColor: "#ffffff",
-        hoveredPillTextColor: "#ffffff", 
-        pillTextColor: "#000000"
-      }
-    } else {
-      return {
-        baseColor: "#ffffff",
-        pillColor: "#000000",
-        hoveredPillTextColor: "#ffffff",
-        pillTextColor: "#ffffff"
-      }
+    return {
+      baseColor: "hsl(var(--foreground))",
+      pillColor: "hsl(var(--primary))", 
+      hoveredPillTextColor: "hsl(var(--primary-foreground))",
+      pillTextColor: "hsl(var(--foreground))"
     }
   }
 
   const navColors = getNavColors();
 
-  // Skills showcase data
+  // Skills showcase data - using CSS variables for consistent theming
   const skillsData = {
     languages: [
-      { name: 'JavaScript', icon: <SiJavascript size={32} color="#F7DF1E" />, level: 'Advanced' },
-      { name: 'Python', icon: <SiPython size={32} color="#3776AB" />, level: 'Advanced' },
-      { name: 'C/C++', icon: <SiCplusplus size={32} color="#00599C" />, level: 'Intermediate' },
-      { name: 'C#', icon: <SiSharp size={32} color="#239120" />, level: 'Intermediate' },
-      { name: 'SQL', icon: <DiDatabase size={32} color="#336791" />, level: 'Advanced' },
-      { name: 'LaTeX', icon: <SiLatex size={32} color="#008080" />, level: 'Intermediate' },
+      { name: 'JavaScript', icon: <SiJavascript size={32} className="text-chart-1" />, level: 'Advanced' },
+      { name: 'Python', icon: <SiPython size={32} className="text-chart-2" />, level: 'Advanced' },
+      { name: 'C/C++', icon: <SiCplusplus size={32} className="text-chart-3" />, level: 'Intermediate' },
+      { name: 'C#', icon: <SiSharp size={32} className="text-chart-4" />, level: 'Intermediate' },
+      { name: 'SQL', icon: <DiDatabase size={32} className="text-chart-5" />, level: 'Advanced' },
+      { name: 'LaTeX', icon: <SiLatex size={32} className="text-primary" />, level: 'Intermediate' },
     ],
     technologies: [
-      { name: 'PyTorch', icon: <SiPytorch size={32} color="#EE4C2C" />, level: 'Advanced' },
-      { name: 'React', icon: <SiReact size={32} color="#61DAFB" />, level: 'Advanced' },
-      { name: 'Vue 3', icon: <SiVuedotjs size={32} color="#4FC08D" />, level: 'Advanced' },
-      { name: 'Node.js', icon: <SiNodedotjs size={32} color="#339933" />, level: 'Advanced' },
-      { name: 'Express', icon: <SiExpress size={32} color="#000000" />, level: 'Advanced' },
-      { name: 'MySQL', icon: <SiMysql size={32} color="#4479A1" />, level: 'Advanced' },
-      { name: 'Docker', icon: <SiDocker size={32} color="#2496ED" />, level: 'Intermediate' },
-      { name: 'FastAPI', icon: <SiFastapi size={32} color="#009688" />, level: 'Advanced' },
+      { name: 'PyTorch', icon: <SiPytorch size={32} className="text-chart-1" />, level: 'Advanced' },
+      { name: 'React', icon: <SiReact size={32} className="text-chart-2" />, level: 'Advanced' },
+      { name: 'Vue 3', icon: <SiVuedotjs size={32} className="text-chart-3" />, level: 'Advanced' },
+      { name: 'Node.js', icon: <SiNodedotjs size={32} className="text-chart-4" />, level: 'Advanced' },
+      { name: 'Express', icon: <SiExpress size={32} className="text-foreground" />, level: 'Advanced' },
+      { name: 'MySQL', icon: <SiMysql size={32} className="text-chart-5" />, level: 'Advanced' },
+      { name: 'Docker', icon: <SiDocker size={32} className="text-primary" />, level: 'Intermediate' },
+      { name: 'FastAPI', icon: <SiFastapi size={32} className="text-accent" />, level: 'Advanced' },
     ],
     domains: [
-      { name: 'Full Stack Development', icon: <FaCode size={32} color="#FF6B6B" />, level: 'Expert' },
-      { name: 'Machine Learning', icon: <FaBrain size={32} color="#4ECDC4" />, level: 'Advanced' },
-      { name: 'NLP', icon: <MdTranslate size={32} color="#45B7D1" />, level: 'Advanced' },
-      { name: 'Reinforcement Learning', icon: <FaRobot size={32} color="#96CEB4" />, level: 'Intermediate' },
+      { name: 'Full Stack Development', icon: <FaCode size={32} className="text-chart-1" />, level: 'Expert' },
+      { name: 'Machine Learning', icon: <FaBrain size={32} className="text-chart-2" />, level: 'Advanced' },
+      { name: 'NLP', icon: <MdTranslate size={32} className="text-chart-3" />, level: 'Advanced' },
+      { name: 'Reinforcement Learning', icon: <FaRobot size={32} className="text-chart-4" />, level: 'Intermediate' },
     ],
     tools: [
-      { name: 'VS Code', icon: <Code size={32} color="#007ACC" />, level: 'Expert' },
-      { name: 'Unity3D', icon: <SiUnity size={32} color="#000000" />, level: 'Intermediate' },
-      { name: 'Git', icon: <SiGit size={32} color="#F05032" />, level: 'Advanced' },
-      { name: 'CUDA', icon: <SiNvidia size={32} color="#76B900" />, level: 'Intermediate' },
+      { name: 'VS Code', icon: <Code size={32} className="text-primary" />, level: 'Expert' },
+      { name: 'Unity3D', icon: <SiUnity size={32} className="text-foreground" />, level: 'Intermediate' },
+      { name: 'Git', icon: <SiGit size={32} className="text-chart-5" />, level: 'Advanced' },
+      { name: 'CUDA', icon: <SiNvidia size={32} className="text-accent" />, level: 'Intermediate' },
     ]
   };
 
   return (
     <div className="min-h-screen">
-      <SplashCursor />
       {/* Navigation */}
       <div className="sticky top-0 z-50 w-full flex justify-center">
         <PillNav

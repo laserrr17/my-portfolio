@@ -20,8 +20,8 @@ export default function SEOEnhancer() {
       <link rel="manifest" href="/manifest.json" />
       
       {/* Theme color for mobile browsers */}
-      <meta name="theme-color" content="#000000" />
-      <meta name="msapplication-TileColor" content="#000000" />
+      <meta name="theme-color" content="hsl(var(--background))" />
+      <meta name="msapplication-TileColor" content="hsl(var(--background))" />
       
       {/* Additional SEO meta tags */}
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />

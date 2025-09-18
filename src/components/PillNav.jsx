@@ -9,9 +9,9 @@ const PillNav = ({
   activeHref,
   className = '',
   ease = 'power3.easeOut',
-  baseColor = '#fff',
-  pillColor = '#060010',
-  hoveredPillTextColor = '#060010',
+  baseColor = 'hsl(var(--foreground))',
+  pillColor = 'hsl(var(--primary))',
+  hoveredPillTextColor = 'hsl(var(--primary-foreground))',
   pillTextColor,
   onMobileMenuClick = null,
   initialLoadAnimation = true

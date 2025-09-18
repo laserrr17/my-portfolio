@@ -42,7 +42,7 @@ const TextType = ({
   }, [variableSpeed, typingSpeed]);
 
   const getCurrentTextColor = () => {
-    if (textColors.length === 0) return '#ffffff';
+    if (textColors.length === 0) return 'hsl(var(--foreground))';
     return textColors[currentTextIndex % textColors.length];
   };
 
