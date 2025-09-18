@@ -124,6 +124,67 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
+/* Green Theme - Based on the palette from the image */
+.green {
+  /* Background: #004643 - dark teal background */
+  --background: #004643;
+  /* Headline: #ffffff - white text */
+  --foreground: #ffffff;
+  
+  /* GooeyNav particle colors for green theme */
+  --color-1: #f9bc60; /* Button/Highlight color */
+  --color-2: #e16162; /* Tertiary color */
+  --color-3: #abd1c6; /* Paragraph/Secondary color */
+  --color-4: #e8e4e6; /* Main/Secondary light color */
+  
+  /* Card: darker version of background */
+  --card: #003d3a;
+  --card-foreground: #ffffff;
+  --popover: #003d3a;
+  --popover-foreground: #ffffff;
+  
+  /* Primary: Button color #f9bc60 */
+  --primary: #f9bc60;
+  --primary-foreground: #001e1d;
+  
+  /* Secondary: Paragraph color #abd1c6 */
+  --secondary: #abd1c6;
+  --secondary-foreground: #001e1d;
+  
+  /* Muted: slightly lighter background */
+  --muted: #005a56;
+  --muted-foreground: #abd1c6;
+  
+  /* Accent: Highlight color */
+  --accent: #f9bc60;
+  --accent-foreground: #001e1d;
+  
+  /* Destructive: Tertiary color for warnings */
+  --destructive: #e16162;
+  
+  /* Borders and inputs */
+  --border: rgba(171, 209, 198, 0.2);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #f9bc60;
+  
+  /* Charts using the palette colors */
+  --chart-1: #f9bc60;
+  --chart-2: #abd1c6;
+  --chart-3: #e8e4e6;
+  --chart-4: #e16162;
+  --chart-5: #004643;
+  
+  /* Sidebar colors */
+  --sidebar: #003d3a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #f9bc60;
+  --sidebar-primary-foreground: #001e1d;
+  --sidebar-accent: #abd1c6;
+  --sidebar-accent-foreground: #001e1d;
+  --sidebar-border: rgba(171, 209, 198, 0.2);
+  --sidebar-ring: #f9bc60;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

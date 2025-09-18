@@ -1,0 +1,561 @@
+"use client"
+
+import { useState } from "react"
+import { useCustomTheme } from "@/contexts/ThemeContext"
+
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import ModeToggle from "@/components/mode-toggle"
+import SpotlightCard from "@/components/SpotlightCard"
+import Image from "next/image"
+import TextTypeWrapper from "@/components/TextTypeWrapper"
+import SplashCursor from "@/components/SplashCursor"
+import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
+import { 
+  SiJavascript, SiPython, SiCplusplus, SiSharp, SiMysql,
+  SiPytorch, SiReact, SiVuedotjs, SiNodedotjs, SiExpress, SiDocker,
+  SiFastapi, SiApacheecharts, SiChartdotjs, SiVite,
+  SiUnity, SiGit, SiNvidia, SiLatex
+} from "react-icons/si"
+import { DiDatabase } from "react-icons/di"
+import { MdTranslate } from "react-icons/md"
+import { FaBrain, FaRobot, FaCode, FaServer } from "react-icons/fa"
+import PillNav from "@/components/PillNav"
+
+export default function PortfolioContent() {
+  const { colorTheme } = useCustomTheme()
+  
+  // Navigation items for PillNav
+  const navItems = [
+    { label: "Home", href: "#" },
+    { label: "About", href: "#about" },
+    { label: "Education", href: "#education" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Skills", href: "#skills" },
+  ];
+
+  // Simple active section tracking (you can enhance this with intersection observer)
+  const [activeSection, setActiveSection] = useState("#");
+
+  // Get theme-aware colors for PillNav
+  const getNavColors = () => {
+    if (colorTheme === 'green') {
+      return {
+        baseColor: "#ffffff",
+        pillColor: "#f9bc60", 
+        hoveredPillTextColor: "#001e1d",
+        pillTextColor: "#ffffff"
+      }
+    } else if (colorTheme === 'light') {
+      return {
+        baseColor: "#000000",
+        pillColor: "#ffffff",
+        hoveredPillTextColor: "#ffffff", 
+        pillTextColor: "#000000"
+      }
+    } else {
+      return {
+        baseColor: "#ffffff",
+        pillColor: "#000000",
+        hoveredPillTextColor: "#ffffff",
+        pillTextColor: "#ffffff"
+      }
+    }
+  }
+
+  const navColors = getNavColors();
+
+  // Skills showcase data
+  const skillsData = {
+    languages: [
+      { name: 'JavaScript', icon: <SiJavascript size={32} color="#F7DF1E" />, level: 'Advanced' },
+      { name: 'Python', icon: <SiPython size={32} color="#3776AB" />, level: 'Advanced' },
+      { name: 'C/C++', icon: <SiCplusplus size={32} color="#00599C" />, level: 'Intermediate' },
+      { name: 'C#', icon: <SiSharp size={32} color="#239120" />, level: 'Intermediate' },
+      { name: 'SQL', icon: <DiDatabase size={32} color="#336791" />, level: 'Advanced' },
+      { name: 'LaTeX', icon: <SiLatex size={32} color="#008080" />, level: 'Intermediate' },
+    ],
+    technologies: [
+      { name: 'PyTorch', icon: <SiPytorch size={32} color="#EE4C2C" />, level: 'Advanced' },
+      { name: 'React', icon: <SiReact size={32} color="#61DAFB" />, level: 'Advanced' },
+      { name: 'Vue 3', icon: <SiVuedotjs size={32} color="#4FC08D" />, level: 'Advanced' },
+      { name: 'Node.js', icon: <SiNodedotjs size={32} color="#339933" />, level: 'Advanced' },
+      { name: 'Express', icon: <SiExpress size={32} color="#000000" />, level: 'Advanced' },
+      { name: 'MySQL', icon: <SiMysql size={32} color="#4479A1" />, level: 'Advanced' },
+      { name: 'Docker', icon: <SiDocker size={32} color="#2496ED" />, level: 'Intermediate' },
+      { name: 'FastAPI', icon: <SiFastapi size={32} color="#009688" />, level: 'Advanced' },
+    ],
+    domains: [
+      { name: 'Full Stack Development', icon: <FaCode size={32} color="#FF6B6B" />, level: 'Expert' },
+      { name: 'Machine Learning', icon: <FaBrain size={32} color="#4ECDC4" />, level: 'Advanced' },
+      { name: 'NLP', icon: <MdTranslate size={32} color="#45B7D1" />, level: 'Advanced' },
+      { name: 'Reinforcement Learning', icon: <FaRobot size={32} color="#96CEB4" />, level: 'Intermediate' },
+    ],
+    tools: [
+      { name: 'VS Code', icon: <Code size={32} color="#007ACC" />, level: 'Expert' },
+      { name: 'Unity3D', icon: <SiUnity size={32} color="#000000" />, level: 'Intermediate' },
+      { name: 'Git', icon: <SiGit size={32} color="#F05032" />, level: 'Advanced' },
+      { name: 'CUDA', icon: <SiNvidia size={32} color="#76B900" />, level: 'Intermediate' },
+    ]
+  };
+
+  return (
+    <div className="min-h-screen">
+      <SplashCursor />
+      {/* Navigation */}
+      <div className="sticky top-0 z-50 w-full flex justify-center">
+        <PillNav
+          logo="/profile_picture.png"
+          logoAlt="Yuhao Cheng"
+          items={navItems}
+          activeHref={activeSection}
+          className="custom-nav"
+          ease="power2.easeOut"
+          baseColor={navColors.baseColor}
+          pillColor={navColors.pillColor}
+          hoveredPillTextColor={navColors.hoveredPillTextColor}
+          pillTextColor={navColors.pillTextColor}
+        />
+        <div className="absolute right-4 top-4">
+          <ModeToggle />
+        </div>
+      </div>
+
+      <main className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <section id="about" className="py-16 text-center min-h-[600px]">
+          <div className="mx-auto max-w-4xl">
+            {/* Profile Picture */}
+            <div className="mb-8 flex justify-center">
+              <div className="relative">
+                <Image 
+                  src="/profile_picture.png" 
+                  alt="Yuhao Cheng" 
+                  width={160} 
+                  height={160}
+                  className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-foreground/80 shadow-lg hover:border-foreground transition-colors duration-300"
+                  priority
+                />
+              </div>
+            </div>
+            
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6 text-foreground">
+              Yuhao Cheng
+            </h1>
+            <div className="text-xl mb-8 text-foreground min-h-[2rem]">
+              <TextTypeWrapper 
+                text={[
+                  "Master's Student in Computer Science at UIUC",
+                  "Full Stack Developer & ML Engineer", 
+                  "Passionate about innovative tech solutions"
+                ]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+                className="text-xl text-foreground"
+              />
+            </div>
+            <p className="text-lg mb-8 max-w-2xl mx-auto text-foreground">
+              Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
+              Passionate about building innovative solutions that bridge technology and real-world applications.
+            </p>
+            
+            {/* Contact Information */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-foreground/90">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                <span>603 E Clark St, IL 61820</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                <a href="mailto:yuhaoc7@outlook.com" className="hover:underline">
+                  yuhaoc7@outlook.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <span>US: +1 217-979-8890</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <span>CN: +86 18356008578</span>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex justify-center gap-4">
+              <Button variant="outline" size="sm">
+                <Github className="h-4 w-4 mr-2" />
+                GitHub
+              </Button>
+              <Button variant="outline" size="sm">
+                <Linkedin className="h-4 w-4 mr-2" />
+                LinkedIn
+              </Button>
+              <Button variant="outline" size="sm">
+                <Mail className="h-4 w-4 mr-2" />
+                Contact
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-16" />
+
+        {/* Education Section */}
+        <section id="education" className="py-16">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
+              <GraduationCap className="h-8 w-8" />
+              Education
+            </h2>
+            
+            <div className="space-y-6">
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle>Master of Computer Science (MCS)</CardTitle>
+                      <CardDescription className="text-base font-medium">
+                        University of Illinois Urbana-Champaign
+                      </CardDescription>
+                    </div>
+                    <Badge variant="secondary" className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      Aug 2025 – Present
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-2">
+                    <strong>Coursework:</strong> Software Engineering, Communication Networks, Text Information Systems
+                  </p>
+                </CardContent>
+              </SpotlightCard>
+
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle>Bachelor of Science in Computer Engineering</CardTitle>
+                      <CardDescription className="text-base font-medium">
+                        University of Illinois Urbana-Champaign
+                      </CardDescription>
+                    </div>
+                    <Badge variant="secondary" className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      2021 – 2025
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    <strong>Coursework:</strong> Data Structures, Operating Systems, AI, Databases, Algorithms
+                  </p>
+                </CardContent>
+              </SpotlightCard>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-16" />
+
+        {/* Projects Section */}
+        <section id="projects" className="py-16">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
+              <Code className="h-8 w-8" />
+              Projects
+            </h2>
+            
+            <div className="space-y-6">
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="flex items-center gap-2">
+                        FinTrack Financial Tracking Platform
+                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </CardTitle>
+                      <CardDescription>Full-stack financial tracking application with AI-powered forecasting</CardDescription>
+                    </div>
+                    <Badge variant="outline">Feb 2025 – Apr 2025</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• Built frontend with React + Material UI and backend with Node.js + Express, supporting real-time multi-currency conversion via APIs</li>
+                      <li>• Implemented time series forecasting (ARIMA, LSTM) for expense prediction and personalized budgeting</li>
+                      <li>• Designed MySQL schema, triggers, and stored procedures (SQL) ensuring transaction consistency</li>
+                    </ul>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="secondary">React</Badge>
+                      <Badge variant="secondary">Material UI</Badge>
+                      <Badge variant="secondary">Node.js</Badge>
+                      <Badge variant="secondary">Express</Badge>
+                      <Badge variant="secondary">MySQL</Badge>
+                      <Badge variant="secondary">LSTM</Badge>
+                      <Badge variant="secondary">ARIMA</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="flex items-center gap-2">
+                        Web Navigation Agent Research Project
+                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </CardTitle>
+                      <CardDescription>Advanced RL-based web agent with memory mechanisms</CardDescription>
+                    </div>
+                    <Badge variant="outline">Sep 2024 – May 2025</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• Overcame the long-standing challenge of designing an effective reward function for RL-based web agents, enabling stable and efficient training</li>
+                      <li>• Integrated agent memory mechanisms to mitigate forgetting issues in complex, multi-step tasks, significantly improving long-horizon task performance</li>
+                      <li>• Fine-tuned LLMs with PyTorch using Supervised Fine-Tuning (SFT) and NLP techniques, achieving higher completion rates and stronger generalization on WebArena</li>
+                    </ul>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="secondary">PyTorch</Badge>
+                      <Badge variant="secondary">Reinforcement Learning</Badge>
+                      <Badge variant="secondary">NLP</Badge>
+                      <Badge variant="secondary">LLMs</Badge>
+                      <Badge variant="secondary">WebArena</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-16" />
+
+        {/* Experience Section */}
+        <section id="experience" className="py-16">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
+              <Briefcase className="h-8 w-8" />
+              Experience
+            </h2>
+            
+            <div className="space-y-6">
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle>Frontend Developer Intern</CardTitle>
+                      <CardDescription className="text-base font-medium">visibilityx.ai</CardDescription>
+                    </div>
+                    <Badge variant="default">Jun 2025 – Aug 2025</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• Developed a Vue 3 + TypeScript SPA with Vuex state management and Vue Router</li>
+                      <li>• Built interactive dashboards and data visualizations (ECharts, SQL-backed APIs) with real-time updates</li>
+                      <li>• Improved performance with Vite build system, modular SCSS, and API error handling</li>
+                    </ul>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="secondary">Vue 3</Badge>
+                      <Badge variant="secondary">TypeScript</Badge>
+                      <Badge variant="secondary">Vuex</Badge>
+                      <Badge variant="secondary">ECharts</Badge>
+                      <Badge variant="secondary">Vite</Badge>
+                      <Badge variant="secondary">SCSS</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle>Deep Learning Intern</CardTitle>
+                      <CardDescription className="text-base font-medium">HiABR Lab</CardDescription>
+                    </div>
+                    <Badge variant="default">May 2024 – Aug 2024</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• Automated PPT generation via prompt engineering + python-pptx, creating structured multi-slide outputs</li>
+                      <li>• Built text-to-image service using Docker + FastAPI, adding async scheduling for GPU efficiency</li>
+                      <li>• Deployed PyTorch ML models with CUDA multi-streaming, doubling throughput and cutting latency by 40%</li>
+                    </ul>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="secondary">PyTorch</Badge>
+                      <Badge variant="secondary">Docker</Badge>
+                      <Badge variant="secondary">FastAPI</Badge>
+                      <Badge variant="secondary">CUDA</Badge>
+                      <Badge variant="secondary">Python</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-16" />
+
+        {/* Skills Section */}
+        <section id="skills" className="py-16">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="text-3xl font-bold mb-8 text-center">Skills & Expertise</h2>
+            <p className="text-center text-muted-foreground mb-12">
+              My technical proficiency across various domains and technologies
+            </p>
+            
+            {/* Bento Grid Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              {/* Languages - Large Card */}
+              <SpotlightCard className="md:col-span-2 lg:col-span-2 custom-spotlight-card" spotlightColor="rgba(247, 223, 30, 0.2)">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <Code className="h-6 w-6" />
+                    Programming Languages
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    {skillsData.languages.map((skill, index) => (
+                      <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex-shrink-0">{skill.icon}</div>
+                        <div className="flex-1">
+                          <div className="font-medium text-sm">{skill.name}</div>
+                          <div className="text-xs text-muted-foreground">{skill.level}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+              {/* Technologies - Large Card */}
+              <SpotlightCard className="md:col-span-2 lg:col-span-2 custom-spotlight-card" spotlightColor="rgba(238, 77, 44, 0.2)">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <Briefcase className="h-6 w-6" />
+                    Technologies & Frameworks
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    {skillsData.technologies.map((skill, index) => (
+                      <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex-shrink-0">{skill.icon}</div>
+                        <div className="flex-1">
+                          <div className="font-medium text-sm">{skill.name}</div>
+                          <div className="text-xs text-muted-foreground">{skill.level}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+              {/* Domains - Tall Card */}
+              <SpotlightCard className="lg:row-span-2 custom-spotlight-card" spotlightColor="rgba(255, 107, 107, 0.2)">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <FaBrain className="h-5 w-5" />
+                    Domains
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {skillsData.domains.map((skill, index) => (
+                      <div key={index} className="text-center p-4 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex justify-center mb-2">{skill.icon}</div>
+                        <div className="font-medium text-sm mb-1">{skill.name}</div>
+                        <div className="text-xs text-muted-foreground">{skill.level}</div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+              {/* Tools - Tall Card */}
+              <SpotlightCard className="lg:row-span-2 custom-spotlight-card" spotlightColor="rgba(118, 185, 0, 0.2)">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <FaServer className="h-5 w-5" />
+                    Tools
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {skillsData.tools.map((skill, index) => (
+                      <div key={index} className="text-center p-4 rounded-lg hover:bg-muted/50 transition-colors">
+                        <div className="flex justify-center mb-2">{skill.icon}</div>
+                        <div className="font-medium text-sm mb-1">{skill.name}</div>
+                        <div className="text-xs text-muted-foreground">{skill.level}</div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+              {/* Additional Skills - Wide Card */}
+              <SpotlightCard className="md:col-span-2 custom-spotlight-card" spotlightColor="rgba(69, 183, 209, 0.2)">
+                <CardHeader>
+                  <CardTitle className="text-lg">Additional Skills</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <Code size={16} />
+                      SystemVerilog
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <Code size={16} />
+                      Verilog
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <Code size={16} />
+                      Assembly
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <SiApacheecharts size={16} />
+                      ECharts
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <SiChartdotjs size={16} />
+                      Chart.js
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2">
+                      <SiVite size={16} />
+                      Vite
+                    </Badge>
+                  </div>
+                </CardContent>
+              </SpotlightCard>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  )
+}

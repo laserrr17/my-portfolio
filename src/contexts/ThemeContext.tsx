@@ -1,0 +1,94 @@
+"use client"
+
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
+
+export type ColorTheme = 'light' | 'dark' | 'green'
+export type SystemTheme = 'light' | 'dark' | 'system'
+
+interface ThemeContextType {
+  colorTheme: ColorTheme
+  systemTheme: SystemTheme
+  setColorTheme: (theme: ColorTheme) => void
+  setSystemTheme: (theme: SystemTheme) => void
+  resolvedTheme: 'light' | 'dark'
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+
+export function useCustomTheme() {
+  const context = useContext(ThemeContext)
+  if (context === undefined) {
+    throw new Error('useCustomTheme must be used within a CustomThemeProvider')
+  }
+  return context
+}
+
+interface CustomThemeProviderProps {
+  children: React.ReactNode
+}
+
+export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
+  const { theme: systemTheme, setTheme: setSystemTheme, resolvedTheme } = useTheme()
+  const [colorTheme, setColorTheme] = useState<ColorTheme>('dark')
+  const [mounted, setMounted] = useState(false)
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true)
+    // Load saved color theme from localStorage
+    const savedColorTheme = localStorage.getItem('color-theme') as ColorTheme
+    if (savedColorTheme && ['light', 'dark', 'green'].includes(savedColorTheme)) {
+      setColorTheme(savedColorTheme)
+    }
+  }, [])
+
+  // Save color theme to localStorage
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('color-theme', colorTheme)
+    }
+  }, [colorTheme, mounted])
+
+  // Apply theme classes to document
+  useEffect(() => {
+    if (mounted && resolvedTheme) {
+      // Remove all theme classes
+      document.documentElement.classList.remove('light', 'dark', 'green')
+      
+      // Add the appropriate classes
+      if (colorTheme === 'green') {
+        document.documentElement.classList.add('green')
+      } else {
+        document.documentElement.classList.add(resolvedTheme)
+      }
+    }
+  }, [colorTheme, resolvedTheme, mounted])
+
+  const handleSetColorTheme = (theme: ColorTheme) => {
+    setColorTheme(theme)
+  }
+
+  const handleSetSystemTheme = (theme: SystemTheme) => {
+    setSystemTheme(theme)
+  }
+
+  // Provide default values during loading state
+  const contextValue = {
+    colorTheme,
+    systemTheme: (systemTheme as SystemTheme) || 'system',
+    setColorTheme: handleSetColorTheme,
+    setSystemTheme: handleSetSystemTheme,
+    resolvedTheme: (resolvedTheme as 'light' | 'dark') || 'dark',
+  }
+
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      {!mounted || !resolvedTheme ? (
+        <div className="min-h-screen bg-background">{children}</div>
+      ) : (
+        children
+      )}
+    </ThemeContext.Provider>
+  )
+}

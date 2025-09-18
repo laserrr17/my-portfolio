@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CustomThemeProvider } from "@/contexts/ThemeContext";
 import PrismWrapper from "@/components/PrismWrapper";
 import StructuredData from "@/components/StructuredData";
 
@@ -108,28 +109,30 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Full-screen Prism Background */}
-          <div className="fixed inset-0 w-full h-full z-0">
-            <PrismWrapper
-              animationType="rotate"
-              timeScale={0.5}
-              height={3.5}
-              baseWidth={5.5}
-              scale={3.6}
-              hueShift={0}
-              colorFrequency={1}
-              noise={0.5}
-              glow={1}
-              transparent={true}
-              className="w-full h-full"
-              style={{ width: '100%', height: '100%' }}
-            />
-          </div>
-          
-          {/* Content layer */}
-          <div className="relative z-10">
-            {children}
-          </div>
+          <CustomThemeProvider>
+            {/* Full-screen Prism Background */}
+            <div className="fixed inset-0 w-full h-full z-0">
+              <PrismWrapper
+                animationType="rotate"
+                timeScale={0.5}
+                height={3.5}
+                baseWidth={5.5}
+                scale={3.6}
+                hueShift={0}
+                colorFrequency={1}
+                noise={0.5}
+                glow={1}
+                transparent={true}
+                className="w-full h-full"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            
+            {/* Content layer */}
+            <div className="relative z-10">
+              {children}
+            </div>
+          </CustomThemeProvider>
         </ThemeProvider>
       </body>
     </html>
