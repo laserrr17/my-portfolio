@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useCustomTheme } from "@/contexts/ThemeContext"
 
 import { Badge } from "@/components/ui/badge"
@@ -24,8 +24,44 @@ import { MdTranslate } from "react-icons/md"
 import { FaBrain, FaRobot, FaCode, FaServer } from "react-icons/fa"
 import PillNav from "@/components/PillNav"
 
+// Custom hook for responsive card dimensions
+const useResponsiveCardDimensions = () => {
+  const [dimensions, setDimensions] = useState({
+    containerHeight: '600px',
+    imageHeight: '580px'
+  })
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (window.innerWidth < 640) { // Mobile
+        setDimensions({
+          containerHeight: '700px', // Larger for mobile
+          imageHeight: '680px'
+        })
+      } else if (window.innerWidth < 768) { // Tablet
+        setDimensions({
+          containerHeight: '650px',
+          imageHeight: '630px'
+        })
+      } else { // Desktop
+        setDimensions({
+          containerHeight: '600px',
+          imageHeight: '580px'
+        })
+      }
+    }
+
+    updateDimensions()
+    window.addEventListener('resize', updateDimensions)
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [])
+
+  return dimensions
+}
+
 export default function PortfolioContent() {
   const { colorTheme } = useCustomTheme()
+  const cardDimensions = useResponsiveCardDimensions()
   
   // Navigation items for PillNav
   const navItems = [
@@ -102,7 +138,8 @@ export default function PortfolioContent() {
           hoveredPillTextColor={navColors.hoveredPillTextColor}
           pillTextColor={navColors.pillTextColor}
         />
-        <div className="absolute right-4 top-4">
+        {/* Theme Toggle Button - Positioned to avoid nav overlap */}
+        <div className="absolute right-4 top-16 sm:top-4 z-40">
           <ModeToggle />
         </div>
       </div>
@@ -117,9 +154,9 @@ export default function PortfolioContent() {
                 backgroundColor="var(--card)"
                 altText="Yuhao Cheng Information"
                 captionText="Yuhao Cheng - Portfolio Information Card"
-                containerHeight="500px"
+                containerHeight={cardDimensions.containerHeight}
                 containerWidth="100%"
-                imageHeight="480px"
+                imageHeight={cardDimensions.imageHeight}
                 imageWidth="100%"
                 rotateAmplitude={6}
                 scaleOnHover={1.02}
@@ -127,11 +164,14 @@ export default function PortfolioContent() {
                 showTooltip={true}
                 displayOverlayContent={true}
                 overlayContent={
-                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-8 text-card-foreground">
-                    <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center px-4 py-6 sm:p-8 text-card-foreground">
+                    {/* Hero Title - Responsive text sizing */}
+                    <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6">
                       Yuhao Cheng
                     </h1>
-                    <div className="text-xl mb-8 min-h-[2rem]">
+                    
+                    {/* Typing Animation - Better responsive sizing */}
+                    <div className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 min-h-[2rem] sm:min-h-[2.5rem]">
                       <TextTypeWrapper 
                         text={[
                           "Master's Student in Computer Science at UIUC",
@@ -142,54 +182,56 @@ export default function PortfolioContent() {
                         pauseDuration={1500}
                         showCursor={true}
                         cursorCharacter="|"
-                        className="text-xl"
+                        className="text-base sm:text-lg md:text-xl"
                       />
                     </div>
-                    <p className="text-lg mb-8 max-w-2xl mx-auto">
+                    
+                    {/* Description - Better mobile text sizing and spacing */}
+                    <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-xs sm:max-w-md md:max-w-2xl mx-auto leading-relaxed">
                       Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
                       Currently supervised by <a href="https://czhai.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">Professor ChengXiang Zhai</a> as a research intern in the <a href="https://timan.cs.illinois.edu/ir/people.html" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">TIMAN group</a>. 
                       Passionate about building innovative solutions that bridge technology and real-world applications.
                     </p>
                     
-                    {/* Contact Information */}
-                    <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm opacity-90">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4" />
-                        <span>603 E Clark St, IL 61820</span>
+                    {/* Contact Information - Responsive grid layout */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-xs sm:text-sm opacity-90 w-full max-w-lg lg:max-w-none">
+                      <div className="flex items-center justify-center lg:justify-start gap-2 min-w-0">
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                        <span className="truncate">603 E Clark St, IL 61820</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-4 w-4" />
-                        <a href="mailto:yuhaoc7@outlook.com" className="hover:underline">
+                      <div className="flex items-center justify-center lg:justify-start gap-2 min-w-0">
+                        <Mail className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                        <a href="mailto:yuhaoc7@outlook.com" className="hover:underline truncate">
                           yuhaoc7@outlook.com
                         </a>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Phone className="h-4 w-4" />
-                        <span>US: +1 217-979-8890</span>
+                      <div className="flex items-center justify-center lg:justify-start gap-2 min-w-0">
+                        <Phone className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                        <span className="truncate">US: +1 217-979-8890</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Phone className="h-4 w-4" />
-                        <span>CN: +86 18356008578</span>
+                      <div className="flex items-center justify-center lg:justify-start gap-2 min-w-0">
+                        <Phone className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                        <span className="truncate">CN: +86 18356008578</span>
                       </div>
                     </div>
 
-                    {/* Social Links */}
-                    <div className="flex justify-center gap-4">
-                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20" asChild>
+                    {/* Social Links - Responsive button sizing and layout */}
+                    <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 w-full max-w-sm sm:max-w-none">
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20 text-xs sm:text-sm" asChild>
                         <a href="https://github.com/laserrr17" target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" />
+                          <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                           GitHub
                         </a>
                       </Button>
-                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20" asChild>
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20 text-xs sm:text-sm" asChild>
                         <a href="https://www.linkedin.com/in/yuhao-cheng-50b473328/" target="_blank" rel="noopener noreferrer">
-                          <Linkedin className="h-4 w-4 mr-2" />
+                          <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                           LinkedIn
                         </a>
                       </Button>
-                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20" asChild>
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20 text-xs sm:text-sm" asChild>
                         <a href="mailto:yuhaoc7@outlook.com">
-                          <Mail className="h-4 w-4 mr-2" />
+                          <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                           Contact
                         </a>
                       </Button>
