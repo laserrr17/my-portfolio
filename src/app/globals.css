@@ -47,6 +47,7 @@
   --radius: 0.625rem;
   --background: #fef6e4;
   --foreground: #001858;
+  --link-color: #0066cc;
   
   /* GooeyNav particle colors */
   --color-1: #f3d2c1;
@@ -82,11 +83,13 @@
   --sidebar-accent-foreground: #001858;
   --sidebar-border: #f3d2c1;
   --sidebar-ring: #f582ae;
+  --link-color: #fef6e4;
 }
 
 .dark {
   --background: #16161a;
   --foreground: #fffffe;
+  --link-color: #66b3ff;
   
   /* GooeyNav particle colors for dark mode */
   /* --color-1: #7f5af0; */
@@ -123,6 +126,7 @@
   --sidebar-accent-foreground: #fffffe;
   --sidebar-border: #010101;
   --sidebar-ring: #7f5af0;
+  --link-color: #010101;
 }
 
 /* Green Theme - Based on the palette from the image */
@@ -185,6 +189,7 @@
   --sidebar-accent-foreground: #001e1d;
   --sidebar-border: rgba(171, 209, 198, 0.2);
   --sidebar-ring: #f9bc60;
+  --link-color: #004643;
 }
 
 @layer base {

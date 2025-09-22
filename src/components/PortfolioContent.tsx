@@ -147,6 +147,7 @@ export default function PortfolioContent() {
                     </div>
                     <p className="text-lg mb-8 max-w-2xl mx-auto">
                       Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
+                      Currently supervised by <a href="https://czhai.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">Professor ChengXiang Zhai</a> as a research intern in the <a href="https://timan.cs.illinois.edu/ir/people.html" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">TIMAN group</a>. 
                       Passionate about building innovative solutions that bridge technology and real-world applications.
                     </p>
                     
@@ -174,17 +175,23 @@ export default function PortfolioContent() {
 
                     {/* Social Links */}
                     <div className="flex justify-center gap-4">
-                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20">
-                        <Github className="h-4 w-4 mr-2" />
-                        GitHub
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20" asChild>
+                        <a href="https://github.com/laserrr17" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          GitHub
+                        </a>
                       </Button>
-                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20">
-                        <Linkedin className="h-4 w-4 mr-2" />
-                        LinkedIn
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20" asChild>
+                        <a href="https://www.linkedin.com/in/yuhao-cheng-50b473328/" target="_blank" rel="noopener noreferrer">
+                          <Linkedin className="h-4 w-4 mr-2" />
+                          LinkedIn
+                        </a>
                       </Button>
-                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20">
-                        <Mail className="h-4 w-4 mr-2" />
-                        Contact
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20" asChild>
+                        <a href="mailto:yuhaoc7@outlook.com">
+                          <Mail className="h-4 w-4 mr-2" />
+                          Contact
+                        </a>
                       </Button>
                     </div>
                   </div>
