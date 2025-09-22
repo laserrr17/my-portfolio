@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
   height: var(--nav-h);
-  background: var(--base, #000);
+  background: var(--color-2, #000);
   border-radius: 9999px;
 }
 
@@ -131,7 +131,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--hover-text, #fff);
+  color: var(--color-3, #fff);
   z-index: 3;
   display: inline-block;
   will-change: transform, opacity;

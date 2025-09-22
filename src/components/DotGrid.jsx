@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useCallback, useMemo } from 'react';
+import { useRef, useEffect, useCallback, useMemo, useState } from 'react';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
@@ -25,13 +25,18 @@ function cssColorToRgb(cssColor) {
     return { r: 128, g: 128, b: 128 };
   }
   
-  // Create a temporary element to get computed color
+  // Create a temporary element and properly append it to get computed styles
   const tempEl = document.createElement('div');
   tempEl.style.color = cssColor;
-  document.body.appendChild(tempEl);
+  tempEl.style.position = 'absolute';
+  tempEl.style.visibility = 'hidden';
+  tempEl.style.pointerEvents = 'none';
+  
+  // Append to document.documentElement instead of body to inherit theme classes
+  document.documentElement.appendChild(tempEl);
   
   const computedColor = window.getComputedStyle(tempEl).color;
-  document.body.removeChild(tempEl);
+  document.documentElement.removeChild(tempEl);
   
   // Parse rgb() or rgba() format
   const match = computedColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
@@ -75,9 +80,15 @@ const DotGrid = ({
     lastX: 0,
     lastY: 0
   });
+  const [themeUpdate, setThemeUpdate] = useState(0);
 
-  const baseRgb = useMemo(() => cssColorToRgb(baseColor), [baseColor]);
-  const activeRgb = useMemo(() => cssColorToRgb(activeColor), [activeColor]);
+  const baseRgb = useMemo(() => {
+    return cssColorToRgb(baseColor);
+  }, [baseColor, themeUpdate]);
+  
+  const activeRgb = useMemo(() => {
+    return cssColorToRgb(activeColor);
+  }, [activeColor, themeUpdate]);
 
   const circlePath = useMemo(() => {
     if (typeof window === 'undefined' || !window.Path2D) return null;
@@ -148,7 +159,7 @@ const DotGrid = ({
         const dy = dot.cy - py;
         const dsq = dx * dx + dy * dy;
 
-        let style = baseColor;
+        let style = `rgb(${baseRgb.r},${baseRgb.g},${baseRgb.b})`;
         if (dsq <= proxSq) {
           const dist = Math.sqrt(dsq);
           const t = 1 - dist / proximity;
@@ -186,6 +197,27 @@ const DotGrid = ({
       else window.removeEventListener('resize', buildGrid);
     };
   }, [buildGrid]);
+
+  // Listen for theme changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          // Theme class changed, force color recalculation
+          setThemeUpdate(prev => prev + 1);
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const onMove = e => {

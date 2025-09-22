@@ -11,6 +11,7 @@ import ModeToggle from "@/components/mode-toggle"
 import SpotlightCard from "@/components/SpotlightCard"
 import Image from "next/image"
 import TextTypeWrapper from "@/components/TextTypeWrapper"
+import TiltedCard from "@/components/TiltedCard"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
 import { 
   SiJavascript, SiPython, SiCplusplus, SiSharp, SiMysql,
@@ -110,78 +111,85 @@ export default function PortfolioContent() {
         {/* Hero Section */}
         <section id="about" className="py-16 text-center min-h-[600px]">
           <div className="mx-auto max-w-4xl">
-            {/* Profile Picture */}
-            <div className="mb-8 flex justify-center">
-              <div className="relative">
-                <Image 
-                  src="/profile_picture.png" 
-                  alt="Yuhao Cheng" 
-                  width={160} 
-                  height={160}
-                  className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-foreground/80 shadow-lg hover:border-foreground transition-colors duration-300"
-                  priority
-                />
-              </div>
-            </div>
             
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6 text-foreground">
-              Yuhao Cheng
-            </h1>
-            <div className="text-xl mb-8 text-foreground min-h-[2rem]">
-              <TextTypeWrapper 
-                text={[
-                  "Master's Student in Computer Science at UIUC",
-                  "Full Stack Developer & ML Engineer", 
-                  "Passionate about innovative tech solutions"
-                ]}
-                typingSpeed={75}
-                pauseDuration={1500}
-                showCursor={true}
-                cursorCharacter="|"
-                className="text-xl text-foreground"
-              />
-            </div>
-            <p className="text-lg mb-8 max-w-2xl mx-auto text-foreground">
-              Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
-              Passionate about building innovative solutions that bridge technology and real-world applications.
-            </p>
-            
-            {/* Contact Information */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-foreground/90">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span>603 E Clark St, IL 61820</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <a href="mailto:yuhaoc7@outlook.com" className="hover:underline">
-                  yuhaoc7@outlook.com
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span>US: +1 217-979-8890</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span>CN: +86 18356008578</span>
-              </div>
-            </div>
+            <div className="w-full max-w-4xl mx-auto">
+              <TiltedCard
+                backgroundColor="var(--card)"
+                altText="Yuhao Cheng Information"
+                captionText="Yuhao Cheng - Portfolio Information Card"
+                containerHeight="500px"
+                containerWidth="100%"
+                imageHeight="480px"
+                imageWidth="100%"
+                rotateAmplitude={6}
+                scaleOnHover={1.02}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-8 text-card-foreground">
+                    <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+                      Yuhao Cheng
+                    </h1>
+                    <div className="text-xl mb-8 min-h-[2rem]">
+                      <TextTypeWrapper 
+                        text={[
+                          "Master's Student in Computer Science at UIUC",
+                          "Full Stack Developer & ML Engineer", 
+                          "Passionate about innovative tech solutions"
+                        ]}
+                        typingSpeed={75}
+                        pauseDuration={1500}
+                        showCursor={true}
+                        cursorCharacter="|"
+                        className="text-xl"
+                      />
+                    </div>
+                    <p className="text-lg mb-8 max-w-2xl mx-auto">
+                      Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
+                      Passionate about building innovative solutions that bridge technology and real-world applications.
+                    </p>
+                    
+                    {/* Contact Information */}
+                    <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm opacity-90">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4" />
+                        <span>603 E Clark St, IL 61820</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        <a href="mailto:yuhaoc7@outlook.com" className="hover:underline">
+                          yuhaoc7@outlook.com
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4" />
+                        <span>US: +1 217-979-8890</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4" />
+                        <span>CN: +86 18356008578</span>
+                      </div>
+                    </div>
 
-            {/* Social Links */}
-            <div className="flex justify-center gap-4">
-              <Button variant="outline" size="sm">
-                <Github className="h-4 w-4 mr-2" />
-                GitHub
-              </Button>
-              <Button variant="outline" size="sm">
-                <Linkedin className="h-4 w-4 mr-2" />
-                LinkedIn
-              </Button>
-              <Button variant="outline" size="sm">
-                <Mail className="h-4 w-4 mr-2" />
-                Contact
-              </Button>
+                    {/* Social Links */}
+                    <div className="flex justify-center gap-4">
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20">
+                        <Github className="h-4 w-4 mr-2" />
+                        GitHub
+                      </Button>
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20">
+                        <Linkedin className="h-4 w-4 mr-2" />
+                        LinkedIn
+                      </Button>
+                      <Button variant="outline" size="sm" className="bg-card-foreground/10 hover:bg-card-foreground/20">
+                        <Mail className="h-4 w-4 mr-2" />
+                        Contact
+                      </Button>
+                    </div>
+                  </div>
+                }
+              />
             </div>
           </div>
         </section>
@@ -406,6 +414,75 @@ export default function PortfolioContent() {
             <p className="text-center text-muted-foreground mb-12">
               My technical proficiency across various domains and technologies
             </p>
+            
+            {/* Featured Skills Cards */}
+            <div className="flex flex-wrap justify-center gap-8 mb-12">
+              <TiltedCard
+                backgroundColor="var(--chart-1)"
+                altText="Full Stack Development"
+                captionText="Full Stack Development - React, Node.js, Python"
+                containerHeight="200px"
+                containerWidth="200px"
+                imageHeight="180px"
+                imageWidth="180px"
+                rotateAmplitude={8}
+                scaleOnHover={1.05}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-4">
+                    <FaCode size={32} className="mb-3 text-primary-foreground" />
+                    <h4 className="text-lg font-bold mb-1 text-primary-foreground">Full Stack</h4>
+                    <p className="text-sm opacity-90 text-primary-foreground">Development</p>
+                  </div>
+                }
+              />
+              
+              <TiltedCard
+                backgroundColor="var(--chart-2)"
+                altText="Machine Learning"
+                captionText="Machine Learning - PyTorch, TensorFlow, NLP"
+                containerHeight="200px"
+                containerWidth="200px"
+                imageHeight="180px"
+                imageWidth="180px"
+                rotateAmplitude={8}
+                scaleOnHover={1.05}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-4">
+                    <FaBrain size={32} className="mb-3 text-primary-foreground" />
+                    <h4 className="text-lg font-bold mb-1 text-primary-foreground">Machine</h4>
+                    <p className="text-sm opacity-90 text-primary-foreground">Learning</p>
+                  </div>
+                }
+              />
+              
+              <TiltedCard
+                backgroundColor="var(--chart-3)"
+                altText="Data Science"
+                captionText="Data Science - Analytics, Visualization, AI"
+                containerHeight="200px"
+                containerWidth="200px"
+                imageHeight="180px"
+                imageWidth="180px"
+                rotateAmplitude={8}
+                scaleOnHover={1.05}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-4">
+                    <FaRobot size={32} className="mb-3 text-primary-foreground" />
+                    <h4 className="text-lg font-bold mb-1 text-primary-foreground">Data</h4>
+                    <p className="text-sm opacity-90 text-primary-foreground">Science</p>
+                  </div>
+                }
+              />
+            </div>
             
             {/* Bento Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

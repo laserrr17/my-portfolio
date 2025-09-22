@@ -14,7 +14,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export default function ModeToggle() {
-  const { colorTheme, systemTheme, setColorTheme, setSystemTheme } = useCustomTheme()
+  const { colorTheme, systemTheme, setColorTheme, setSystemTheme, mounted } = useCustomTheme()
+  
+  // Don't render during SSR to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <Button variant="outline" size="icon">
+        <Palette className="h-[1.2rem] w-[1.2rem] transition-all" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    )
+  }
 
   const getIcon = () => {
     if (colorTheme === 'green') {

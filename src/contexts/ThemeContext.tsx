@@ -12,6 +12,7 @@ interface ThemeContextType {
   setColorTheme: (theme: ColorTheme) => void
   setSystemTheme: (theme: SystemTheme) => void
   resolvedTheme: 'light' | 'dark'
+  mounted: boolean
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -78,22 +79,19 @@ export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
     setSystemTheme(theme)
   }
 
-  // Provide default values during loading state
+  // Provide consistent values for SSR and client
   const contextValue = {
-    colorTheme,
+    colorTheme: mounted ? colorTheme : 'green', // Use default during SSR
     systemTheme: (systemTheme as SystemTheme) || 'system',
     setColorTheme: handleSetColorTheme,
     setSystemTheme: handleSetSystemTheme,
     resolvedTheme: (resolvedTheme as 'light' | 'dark') || 'dark',
+    mounted,
   }
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {!mounted || !resolvedTheme ? (
-        <div className="min-h-screen bg-background">{children}</div>
-      ) : (
-        children
-      )}
+      {children}
     </ThemeContext.Provider>
   )
 }

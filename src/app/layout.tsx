@@ -115,8 +115,8 @@ export default function RootLayout({
               <DotGrid
                 dotSize={8}
                 gap={12}
-                baseColor='var(--color-3)'
-                activeColor='var(--color-4)'
+                baseColor="var(--color-1)"
+                activeColor='var(--color-2)'
                 proximity={120}
                 shockRadius={150}
                 shockStrength={5}
