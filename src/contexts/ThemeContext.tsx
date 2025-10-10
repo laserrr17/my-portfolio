@@ -31,7 +31,7 @@ interface CustomThemeProviderProps {
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
   const { theme: systemTheme, setTheme: setSystemTheme, resolvedTheme } = useTheme()
-  const [colorTheme, setColorTheme] = useState<ColorTheme>('green')
+  const [colorTheme, setColorTheme] = useState<ColorTheme>('dark')
   const [mounted, setMounted] = useState(false)
 
   // Handle hydration
@@ -81,7 +81,7 @@ export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
 
   // Provide consistent values for SSR and client
   const contextValue = {
-    colorTheme: mounted ? colorTheme : 'green', // Use default during SSR
+    colorTheme: mounted ? colorTheme : 'dark', // Use default during SSR
     systemTheme: (systemTheme as SystemTheme) || 'system',
     setColorTheme: handleSetColorTheme,
     setSystemTheme: handleSetSystemTheme,
