@@ -13,7 +13,7 @@ import Image from "next/image"
 import TextTypeWrapper from "@/components/TextTypeWrapper"
 import TiltedCard from "@/components/TiltedCard"
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, GraduationCap, Briefcase, Code } from "lucide-react"
-import { 
+import {
   SiJavascript, SiPython, SiCplusplus, SiSharp, SiMysql,
   SiPytorch, SiReact, SiVuedotjs, SiNodedotjs, SiExpress, SiDocker,
   SiFastapi, SiApacheecharts, SiChartdotjs, SiVite,
@@ -62,10 +62,11 @@ const useResponsiveCardDimensions = () => {
 export default function PortfolioContent() {
   const { colorTheme } = useCustomTheme()
   const cardDimensions = useResponsiveCardDimensions()
-  
+
   // Navigation items for PillNav
   const navItems = [
     { label: "Home", href: "#" },
+    { label: "Photography", href: "/photography" },
     { label: "About", href: "#about" },
     { label: "Education", href: "#education" },
     { label: "Projects", href: "#projects" },
@@ -80,7 +81,7 @@ export default function PortfolioContent() {
   const getNavColors = () => {
     return {
       baseColor: "var(--foreground)",
-      pillColor: "var(--primary)", 
+      pillColor: "var(--primary)",
       hoveredPillTextColor: "var(--primary-foreground)",
       pillTextColor: "var(--foreground)"
     }
@@ -148,7 +149,7 @@ export default function PortfolioContent() {
         {/* Hero Section */}
         <section id="about" className="py-16 text-center min-h-[600px]">
           <div className="mx-auto max-w-4xl">
-            
+
             <div className="w-full max-w-4xl mx-auto">
               <TiltedCard
                 backgroundColor="var(--card)"
@@ -169,13 +170,13 @@ export default function PortfolioContent() {
                     <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6">
                       Yuhao Cheng
                     </h1>
-                    
+
                     {/* Typing Animation - Better responsive sizing */}
                     <div className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 min-h-[2rem] sm:min-h-[2.5rem]">
-                      <TextTypeWrapper 
+                      <TextTypeWrapper
                         text={[
                           "Master's Student in Computer Science at UIUC",
-                          "Full Stack Developer & ML Engineer", 
+                          "Full Stack Developer & ML Engineer",
                           "Passionate about innovative tech solutions"
                         ]}
                         typingSpeed={75}
@@ -185,14 +186,14 @@ export default function PortfolioContent() {
                         className="text-base sm:text-lg md:text-xl"
                       />
                     </div>
-                    
+
                     {/* Description - Better mobile text sizing and spacing */}
                     <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-xs sm:max-w-md md:max-w-2xl mx-auto leading-relaxed">
-                      Specializing in Full Stack Development, Machine Learning, and Natural Language Processing. 
-                      Currently supervised by <a href="https://czhai.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">Professor ChengXiang Zhai</a> as a research intern in the <a href="https://timan.cs.illinois.edu/ir/people.html" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">TIMAN group</a>. 
+                      Specializing in Full Stack Development, Machine Learning, and Natural Language Processing.
+                      Currently supervised by <a href="https://czhai.cs.illinois.edu/" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">Professor ChengXiang Zhai</a> as a research intern in the <a href="https://timan.cs.illinois.edu/ir/people.html" target="_blank" rel="noopener noreferrer" className="text-[var(--link-color)] hover:underline">TIMAN group</a>.
                       Passionate about building innovative solutions that bridge technology and real-world applications.
                     </p>
-                    
+
                     {/* Contact Information - Responsive grid layout */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-xs sm:text-sm opacity-90 w-full max-w-lg lg:max-w-none">
                       <div className="flex items-center justify-center lg:justify-start gap-2 min-w-0">
@@ -252,7 +253,7 @@ export default function PortfolioContent() {
               <GraduationCap className="h-8 w-8" />
               Education
             </h2>
-            
+
             <div className="space-y-6">
               <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
@@ -310,7 +311,7 @@ export default function PortfolioContent() {
               <Code className="h-8 w-8" />
               Projects
             </h2>
-            
+
             <div className="space-y-6">
               <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
@@ -392,7 +393,7 @@ export default function PortfolioContent() {
               <Briefcase className="h-8 w-8" />
               Experience
             </h2>
-            
+
             <div className="space-y-6">
               <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
                 <CardHeader>
@@ -463,7 +464,7 @@ export default function PortfolioContent() {
             <p className="text-center text-muted-foreground mb-12">
               My technical proficiency across various domains and technologies
             </p>
-            
+
             {/* Featured Skills Cards */}
             <div className="flex flex-wrap justify-center gap-8 mb-12">
               <TiltedCard
@@ -487,7 +488,7 @@ export default function PortfolioContent() {
                   </div>
                 }
               />
-              
+
               <TiltedCard
                 backgroundColor="var(--chart-2)"
                 altText="Machine Learning"
@@ -509,7 +510,7 @@ export default function PortfolioContent() {
                   </div>
                 }
               />
-              
+
               <TiltedCard
                 backgroundColor="var(--chart-3)"
                 altText="Data Science"
@@ -532,10 +533,10 @@ export default function PortfolioContent() {
                 }
               />
             </div>
-            
+
             {/* Bento Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              
+
               {/* Languages - Large Card */}
               <SpotlightCard className="md:col-span-2 lg:col-span-2 custom-spotlight-card" spotlightColor="rgba(247, 223, 30, 0.2)">
                 <CardHeader>
