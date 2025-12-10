@@ -1,19 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    // Ignore ESLint errors during builds
-    ignoreDuringBuilds: true,
-  },
+
   typescript: {
     // Ignore TypeScript errors during builds
     ignoreBuildErrors: true,
   },
-  
+
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
-  
+
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -23,7 +20,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  
+
   // Headers for SEO and security
   async headers() {
     return [
@@ -76,7 +73,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  
+
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-icons'],
